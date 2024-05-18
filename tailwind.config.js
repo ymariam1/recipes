@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/pages/**/*.{js,ts,jsx,tsx}", './src/app/**/*.{js,ts,jsx,tsx}', "./src/components/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
@@ -19,5 +19,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  plugins: [ require('@tailwindcss/aspect-ratio'),
+  require('@tailwindcss/forms'),
+  require('@tailwindcss/typography'),],
 };

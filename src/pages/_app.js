@@ -1,8 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import "../styles/tailwind.css";
-import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider attribute="class">
       <Component {...pageProps} />

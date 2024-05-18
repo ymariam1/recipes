@@ -1,15 +1,13 @@
 import Link from "next/link";
 import ThemeChanger from "./darkSwitch";
-import Image from "next/image"
-import { Disclosure } from "@headlessui/react";
+
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 
 const Navbar = () => {
   const navigation = [
     "Product",
     "Features",
-    "Pricing",
-    "Company",
-    "Blog",
+    "About Us",
   ];
 
   return (
@@ -23,19 +21,12 @@ const Navbar = () => {
                 <Link href="/">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>
-                      <Image
-                        src="/img/logo.svg"
-                        alt="N"
-                        width="32"
-                        height="32"
-                        className="w-8"
-                      />
                     </span>
-                    <span>Nextly</span>
+                    <span>AI Chef Mate</span>
                   </span>
                 </Link>
 
-                <Disclosure.Button
+                <DisclosureButton
                   aria-label="Toggle Menu"
                   className="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700">
                   <svg
@@ -56,9 +47,9 @@ const Navbar = () => {
                       />
                     )}
                   </svg>
-                </Disclosure.Button>
+                </DisclosureButton>
 
-                <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
+                <DisclosurePanel className="flex flex-wrap w-full my-5 lg:hidden">
                   <>
                     {navigation.map((item, index) => (
                       <Link key={index} href="/" className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none">
@@ -69,7 +60,7 @@ const Navbar = () => {
                         Get Started
                     </Link>
                   </>
-                </Disclosure.Panel>
+                </DisclosurePanel>
               </div>
             </>
           )}
