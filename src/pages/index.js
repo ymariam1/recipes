@@ -9,11 +9,7 @@ const Home = () => {
   return (
     <>
     <Head>
-        <title>Nextly - Free Nextjs & TailwindCSS Landing Page Template</title>
-        <meta
-          name="description"
-          content="Nextly is a free landing page template built with next.js & Tailwind CSS"
-        />
+        <title>AI Chef Mate</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
