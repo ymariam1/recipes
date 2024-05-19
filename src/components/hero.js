@@ -1,8 +1,13 @@
+import { Button } from "@headlessui/react";
 import Container from "./container";
 import heroImg from "/public/img/placeholder.jpg";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Hero = () => {
+  const router = useRouter()
+  const tryOnWeb = () => {;
+    router.push('/uploadp');
+  }
   return (
     <>
       <Container className="flex flex-wrap ">
@@ -19,13 +24,13 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-              <Link
-                href="/uploadp"
+              <Button
+                onClick={tryOnWeb}
                 target="_blank"
                 rel="noopener"
                 className="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md ">
                 Try on Web
-              </Link>
+              </Button>
               <a
                 href="https://github.com/ymariam1/recipes"
                 target="_blank"
@@ -59,3 +64,4 @@ const Hero = () => {
 }
 
 export default Hero;
+

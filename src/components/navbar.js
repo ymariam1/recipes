@@ -1,14 +1,19 @@
 import Link from "next/link";
 import ThemeChanger from "./darkSwitch";
+import { useRouter } from "next/router";
+import { Button } from "@headlessui/react";
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 
 const Navbar = () => {
   const navigation = [
-    "Product",
-    "Features",
-    "About Us",
+
   ];
+  const router = useRouter()
+
+  const login = () => {;
+    router.push('/auth');
+  }
 
   return (
     <div className="w-full">
@@ -56,7 +61,7 @@ const Navbar = () => {
                           {item}
                       </Link>
                     ))}
-                    <Link href="/" className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5">         
+                    <Link href="/auth" className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5">         
                         Get Started
                     </Link>
                   </>
@@ -80,9 +85,9 @@ const Navbar = () => {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          <Link href="/" className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
+          <Button onClick={login} className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
               Get Started
-          </Link>
+          </Button>
 
           <ThemeChanger />
         </div>
