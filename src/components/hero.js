@@ -1,6 +1,5 @@
 import { Button } from "@headlessui/react";
 import Container from "./container";
-import heroImg from "/public/img/placeholder.jpg";
 import { useRouter } from "next/router";
 
 const Hero = () => {
