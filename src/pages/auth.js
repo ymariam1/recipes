@@ -29,17 +29,12 @@ export default function Auth() {
         <div id="container" className={`${styles.localContainer} flex justify-center items-center`}>
           <div className={`${styles.localFormContainer} ${styles.localSignUpContainer} bg-white p-8`}>
             <form action="#" className="text-center">
-              <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500`}>Create Account</h1>
+              <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Create Account</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500 ">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500">
-                  <i className="fab fa-google-plus-g"></i>
-                </a>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
+              <button className={`${styles.socialButton} ${styles.googleButton}`}>
+              <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
+              Create an account with Google
+            </button>
               </div>
               <span className={`${styles.localSpan} block text-sm text-gray-600 mb-4`}>or use your email for registration</span>
               <input type="text" placeholder="Name" className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded`} />
@@ -50,17 +45,12 @@ export default function Auth() {
           </div>
           <div className={`${styles.localFormContainer} ${styles.localSignInContainer} bg-white p-8`}>
             <form action="#" className="text-center">
-              <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500`}>Sign in</h1>
+              <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Log In</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500">
-                  <i className="fab fa-google-plus-g"></i>
-                </a>
-                <a href="#" className="inline-flex items-center justify-center h-10 w-10 border border-gray-300 rounded-full text-indigo-500">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
+              <button className={`${styles.socialButton} ${styles.googleButton}`}>
+              <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
+              Log in with Google
+            </button>
               </div>
               <span className={`${styles.localSpan} block text-sm text-gray-600 mb-4`}>or use your account</span>
               <input type="email" placeholder="Email" className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded`} />

@@ -212,3 +212,39 @@
   width: 40px;
 }
 
+
+.socialButton {
+    margin: 20px 0;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 300px;
+  }
+  
+  .googleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .googleButton:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .googleLogo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
