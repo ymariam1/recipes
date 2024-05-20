@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/signup.module.css';
 import Navbar from '../components/navbar';
+import { signIn } from 'next-auth/react';
 
 export default function Auth() {
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Auth() {
             <form action="#" className="text-center">
               <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Create Account</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-              <button className={`${styles.socialButton} ${styles.googleButton}`}>
+              <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
               <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
               Create an account with Google
             </button>
@@ -47,7 +48,7 @@ export default function Auth() {
             <form action="#" className="text-center">
               <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Log In</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-              <button className={`${styles.socialButton} ${styles.googleButton}`}>
+              <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
               <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
               Log in with Google
             </button>
@@ -68,7 +69,7 @@ export default function Auth() {
               </div>
               <div className={`${styles.localOverlayPanel} ${styles.localOverlayRight}`}>
                 <h1 className={`${styles.localH1} font-bold text-white text-xl`}>Hey Stranger!</h1>
-                <p className={`${styles.localP} text-white`}>If you're new around here enter your information to join the family</p>
+                <p className={`${styles.localP} text-white`}>If you're new around here enter your information to join</p>
                 <button className={`${styles.localButton} ${styles.localGhost}`} id="signUp">Sign Up</button>
               </div>
             </div>
