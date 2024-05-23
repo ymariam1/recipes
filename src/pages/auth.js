@@ -7,6 +7,8 @@ import { signIn } from 'next-auth/react';
 export default function Auth() {
   const [signupData, setSignupData] = useState({ username: '', email: '', password: '' });
   const [signinData, setSigninData] = useState({ username: '', password: '' });
+  const [signupError, setSignupError] = useState('');
+  const [signinError, setSigninError] = useState('');
 
 
   useEffect(() => {
@@ -33,8 +35,29 @@ export default function Auth() {
     setSigninData({ ...signinData, [name]: value });
   };
 
+  const validateSignupData = () => {
+    const { username, email, password } = signupData;
+    if (!username || !email || !password) {
+      return "All fields are required.";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return "Invalid email format.";
+    }
+    if (password.length < 6) {
+      return "Password must be at least 6 characters long.";
+    }
+    return null;
+  };
+
+
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+    const error = validateSignupData();
+    if (error) {
+      setSignupError(error);
+      return;
+    }
     try {
       const response = await fetch('http://localhost:8000/api/signup/', {
         method: 'POST',
@@ -48,8 +71,10 @@ export default function Auth() {
       }
       const result = await response.json();
       console.log(result);
+      setSignupError('');
     } catch (error) {
       console.error('Error during sign up:', error);
+      setSignupError('An error occurred during sign up.');
     }
   };
 
@@ -68,12 +93,14 @@ export default function Auth() {
       }
       const result = await response.json();
       console.log(result);
+      setSigninError('');
     } catch (error) {
       console.error('Error during sign in:', error);
+      setSigninError('An error occurred during sign in.');
     }
   };
 
-  
+
   return (
     <>
       <Head>
@@ -120,6 +147,7 @@ export default function Auth() {
                 value={signupData.password}
                 onChange={handleSignupChange}
               />
+              {signupError && <p className="text-red-500">{signupError}</p>}
               <button className={`${styles.localButton} text-white py-2 px-6 rounded mt-4 transition-transform duration-75 ease-in-out active:${styles.localButtonActive}`}>Sign Up</button>
             </form>
           </div>
