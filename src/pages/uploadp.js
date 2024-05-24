@@ -16,6 +16,29 @@ export default function Upload() {
     setUploadedFiles(prevFiles => prevFiles.filter(file => file.name !== fileName));
   };  
 
+  const handleUpload = async () => {
+    const formData = new FormData();
+    uploadedFiles.forEach(file => {
+      formData.append('image', file);
+    });
+
+    try {
+      const response = await fetch('http://localhost:8000/api/upload/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setDetectedIngredients(result.ingredients);
+    } catch (error) {
+      console.error('Error during file upload:', error);
+    }
+  };
+
   return (
     <>
     <Navbar />
@@ -59,7 +82,7 @@ export default function Upload() {
         {uploadedFiles.length > 0 && (
             <button
               className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-              onClick={() => alert('Files uploaded!')}
+              onClick={handleUpload}
             >
               Upload
               </button>
