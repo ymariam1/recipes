@@ -3,13 +3,14 @@ import Head from 'next/head';
 import styles from '../styles/signup.module.css';
 import Navbar from '../components/navbar';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export default function Auth() {
   const [signupData, setSignupData] = useState({ username: '', email: '', password: '' });
   const [signinData, setSigninData] = useState({ username: '', password: '' });
   const [signupError, setSignupError] = useState('');
   const [signinError, setSigninError] = useState('');
-
+  const router = useRouter(); 
 
   useEffect(() => {
     const signUpButton = document.getElementById('signUp');
@@ -50,7 +51,6 @@ export default function Auth() {
     return null;
   };
 
-
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     const error = validateSignupData();
@@ -66,12 +66,15 @@ export default function Auth() {
         },
         body: JSON.stringify(signupData),
       });
+      const result = await response.json();
       if (!response.ok) {
+        console.error('Server response:', result);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const result = await response.json();
       console.log(result);
+      localStorage.setItem('token', result.access);
       setSignupError('');
+      router.push('/uploadp'); // Redirect to home screen
     } catch (error) {
       console.error('Error during sign up:', error);
       setSignupError('An error occurred during sign up.');
@@ -88,18 +91,20 @@ export default function Auth() {
         },
         body: JSON.stringify(signinData),
       });
+      const result = await response.json();
       if (!response.ok) {
+        console.error('Server response:', result);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const result = await response.json();
       console.log(result);
+      localStorage.setItem('token', result.access);
       setSigninError('');
+      router.push('/uploadp'); // Redirect to home screen
     } catch (error) {
       console.error('Error during sign in:', error);
       setSigninError('An error occurred during sign in.');
     }
   };
-
 
   return (
     <>
@@ -114,36 +119,36 @@ export default function Auth() {
             <form className="text-center" onSubmit={handleSignupSubmit}>
               <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Create Account</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-              <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
-              <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
-              Create an account with Google
-            </button>
+                <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
+                  <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
+                  Create an account with Google
+                </button>
               </div>
               <span className={`${styles.localSpan} block text-sm text-gray-600 mb-4`}>or use your email for registration</span>
-              <input 
+              <input
                 type="text"
-                name= "username"
+                name="username"
                 autoComplete='off'
-                placeholder="Username" 
+                placeholder="Username"
                 className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`}
                 value={signupData.username}
                 onChange={handleSignupChange}
               />
-              <input 
+              <input
                 type="email"
-                name='email' 
-                placeholder="Email" 
+                name='email'
+                placeholder="Email"
                 autoComplete='off'
-                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`} 
+                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`}
                 value={signupData.email}
                 onChange={handleSignupChange}
               />
-              <input 
-                type="password" 
+              <input
+                type="password"
                 name='password'
                 autoComplete='off'
-                placeholder="Password" 
-                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`} 
+                placeholder="Password"
+                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`}
                 value={signupData.password}
                 onChange={handleSignupChange}
               />
@@ -155,27 +160,27 @@ export default function Auth() {
             <form onSubmit={handleSigninSubmit} className="text-center">
               <h1 className={`${styles.localH1} font-bold mb-4 text-indigo-500 text-2xl`}>Log In</h1>
               <div className={`${styles.localSocialContainer} mb-4`}>
-              <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
-              <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
-              Log in with Google
-            </button>
+                <button className={`${styles.socialButton} ${styles.googleButton}`} onClick={() => signIn('google')}>
+                  <img src="/img/google.png" alt="Google Logo" className={styles.googleLogo} />
+                  Log in with Google
+                </button>
               </div>
               <span className={`${styles.localSpan} block text-sm text-gray-600 mb-4`}>or use your account</span>
-              <input 
-                type="username" 
+              <input
+                type="username"
                 name='username'
                 autoComplete='off'
-                placeholder="Username" 
-                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`} 
+                placeholder="Username"
+                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`}
                 value={signinData.username}
                 onChange={handleSigninChange}
               />
-              <input 
-                type="password" 
+              <input
+                type="password"
                 name='password'
-                placeholder="Password" 
+                placeholder="Password"
                 autoComplete='off'
-                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`} 
+                className={`${styles.localInput} block w-full mb-2 p-2 border border-gray-300 rounded text-gray-600`}
                 value={signinData.password}
                 onChange={handleSigninChange}
               />
